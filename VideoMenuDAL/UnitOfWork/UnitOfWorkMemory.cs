@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using VideoMenuDAL.Context;
+using VideoMenuDAL.Entities;
 using VideoMenuDAL.Repositories;
 
 namespace VideoMenuDAL.UnitOfWork
 {
     internal class UnitOfWorkMemory : IUnitOfWork
     {
-        public IVideoRepository VideoRepository { get; internal set; }
+        public IRepository<Video> VideoRepository { get; internal set; }
 
         private readonly InMemoryContext _context;
 

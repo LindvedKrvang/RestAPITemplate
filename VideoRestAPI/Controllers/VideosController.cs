@@ -20,35 +20,35 @@ namespace VideoRestAPI.Controllers
         [HttpGet]
         public IEnumerable<VideoBO> Get()
         {
-            return _facade.Service.GetAll();
+            return _facade.VideoService.GetAll();
         }
 
         // GET: api/Videos/5
         [HttpGet("{id}", Name = "Get")]
         public VideoBO Get(int id)
         {
-            return _facade.Service.GetOne(id);
+            return _facade.VideoService.GetOne(id);
         }
         
         // POST: api/Videos
         [HttpPost]
         public void Post([FromBody]VideoBO video)
         {
-            _facade.Service.Create(video.Name);
+            _facade.VideoService.Create(video);
         }
         
         // PUT: api/Videos/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]VideoBO video)
         {
-            _facade.Service.Update(video);
+            _facade.VideoService.Update(video);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _facade.Service.Delete(id);
+            _facade.VideoService.Delete(id);
         }
     }
 }

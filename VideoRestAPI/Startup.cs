@@ -35,8 +35,8 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BllFacade();
-                facade.Service.Create("Bye Bye Birdie");
-                facade.Service.Create("Skyfall");
+                facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Id = 1, Genre = EGenreBO.Comedy});
+                facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Id = 2, Genre = EGenreBO.Action});
             }
 
             app.UseMvc();

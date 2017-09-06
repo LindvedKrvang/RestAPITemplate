@@ -29,7 +29,7 @@ namespace VideoMenuBLLTest
         [Fact]
         public void VideoService_GetVideo_NotNull()
         {
-            var videoCreated = _videoService.Create(TestVideo.Name);
+            var videoCreated = _videoService.Create(TestVideo);
             var video = _videoService.GetOne(videoCreated.Id);
 
             Assert.NotNull(video);
@@ -38,8 +38,8 @@ namespace VideoMenuBLLTest
         [Fact]
         private void VideoService_GetAllVideos_Equal()
         {
-            _videoService.Create(TestVideo.Name);
-            _videoService.Create(TestVideo.Name);
+            _videoService.Create(TestVideo);
+            _videoService.Create(TestVideo);
             var result = _videoService.GetAll().Count;
             var expectedResult = 2;
 
@@ -49,7 +49,7 @@ namespace VideoMenuBLLTest
         [Fact]
         private void VideoService_CreateVideo_Contains()
         {
-            var videoCreated = _videoService.Create(TestVideo.Name);
+            var videoCreated = _videoService.Create(TestVideo);
             var videos = _videoService.GetAll();
 
             Assert.Contains(videoCreated, videos);
@@ -58,8 +58,8 @@ namespace VideoMenuBLLTest
         [Fact]
         private void VideoService_DeleteVideo_DoesNotContain()
         {
-            var video1 = _videoService.Create(TestVideo.Name + "1");
-            var video2 = _videoService.Create(TestVideo.Name + "2");
+            var video1 = _videoService.Create(TestVideo);
+            var video2 = _videoService.Create(TestVideo);
 
             _videoService.Delete(video2.Id);
 
@@ -69,7 +69,7 @@ namespace VideoMenuBLLTest
         [Fact]
         private void VideoService_CreateAll_Contains()
         {
-            var names = new List<string>(){"Test1", "Test2", "Test3"};
+            var names = new List<VideoBO>(){new VideoBO(){Name = "Test1"}, new VideoBO(){Name = "Test2"}, new VideoBO(){Name = "Test3"}};
             var createdVideos = _videoService.CreateAll(names);
 
             var videosFromDb = _videoService.GetAll();

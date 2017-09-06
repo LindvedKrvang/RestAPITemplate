@@ -1,24 +1,20 @@
 ﻿using System.Collections.Generic;
+using VideoMenuDAL.Entities;
 
-namespace VideoMenuBLL
+namespace VideoMenuDAL
 {
-    public interface IService<TEntity>
+    public interface  IRepository<TEntity> where TEntity : class
     {
         //C
         TEntity Create(TEntity entity);
-
-        List<TEntity> CreateAll(List<TEntity> entities);
         
         //R
         List<TEntity> GetAll();
-        TEntity GetOne(int id);
+        TEntity Get(int id);
         List<TEntity> Search(string searchQuery);
 
-        //U
-        void Update(TEntity video);
-
         //D
-        TEntity Delete(int idOfVideo);
+        TEntity Delete(int idToRemove);
 
         void ClearAll();
     }

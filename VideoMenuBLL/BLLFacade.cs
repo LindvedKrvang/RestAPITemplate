@@ -6,6 +6,6 @@ namespace VideoMenuBLL
 {
     public class BllFacade
     {
-        public IService<VideoBO> Service => new VideoService(new DalFacade());
+        public IService<VideoBO> VideoService => new VideoService(new DalFacade());
     }
 }

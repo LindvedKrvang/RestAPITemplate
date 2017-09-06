@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VideoMenuDAL.Entities;
 
 namespace VideoMenuDAL
 {
     public interface IUnitOfWork : IDisposable
     {
-        IVideoRepository VideoRepository { get; }
+        IRepository<Video> VideoRepository { get; }
 
         int Complete();
     }

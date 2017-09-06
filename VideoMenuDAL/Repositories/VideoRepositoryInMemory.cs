@@ -7,7 +7,7 @@ using VideoMenuDAL.Entities;
 
 namespace VideoMenuDAL.Repositories
 {
-    internal class VideoRepositoryInMemory : IVideoRepository
+    internal class VideoRepositoryInMemory : IRepository<Video>
     {
         private readonly InMemoryContext _context;
 
@@ -22,7 +22,7 @@ namespace VideoMenuDAL.Repositories
         /// Returns all videos in ht memoryDb.
         /// </summary>
         /// <returns></returns>
-        public List<Video> GetVidoes()
+        public List<Video> GetAll()
         {
             return _context.Videos.ToList();
         }
@@ -32,7 +32,7 @@ namespace VideoMenuDAL.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Video GetVideo(int id)
+        public Video Get(int id)
         {
             return _context.Videos.FirstOrDefault(v => v.Id == id);
         }
@@ -42,7 +42,7 @@ namespace VideoMenuDAL.Repositories
         /// </summary>
         /// <param name="idToRemove"></param>
         /// <returns></returns>
-        public Video DeleteVideo(int idToRemove)
+        public Video Delete(int idToRemove)
         {
             var videoToDelete = _context.Videos.FirstOrDefault(v => v.Id == idToRemove);
             _context.Videos.Remove(videoToDelete);
@@ -63,18 +63,18 @@ namespace VideoMenuDAL.Repositories
         /// <summary>
         /// Creates a video in the memoryDb.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="video"></param>
         /// <returns></returns>
-        public Video CreateVideo(string name)
+        public Video Create(Video video)
         {
-            var video = new Video()
+            var videoCreated = new Video()
             {
                 Id = _id++,
-                Name = name,
+                Name = video.Name,
                 Genre = EGenre.Undefined
             };
-            _context.Videos.Add(video);
-            return video;
+            _context.Videos.Add(videoCreated);
+            return videoCreated;
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace VideoMenuDAL.Repositories
         /// </summary>
         /// <param name="searchQuery"></param>
         /// <returns></returns>
-        public List<Video> SearchVideos(string searchQuery)
+        public List<Video> Search(string searchQuery)
         {
             int.TryParse(searchQuery, out int id);
             return _context.Videos.Where(v =>
