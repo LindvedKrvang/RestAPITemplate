@@ -39,14 +39,16 @@ namespace VideoRestAPI.Controllers
         
         // PUT: api/Videos/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]VideoBO video)
         {
+            _facade.Service.Update(video);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _facade.Service.Delete(id);
         }
     }
 }

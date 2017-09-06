@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using VideoMenuBLL;
+using VideoMenuBLL.BusinessObjects;
 
 namespace VideoRestAPI
 {
@@ -32,6 +34,9 @@ namespace VideoRestAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                var facade = new BllFacade();
+                facade.Service.Create("Bye Bye Birdie");
+                facade.Service.Create("Skyfall");
             }
 
             app.UseMvc();
