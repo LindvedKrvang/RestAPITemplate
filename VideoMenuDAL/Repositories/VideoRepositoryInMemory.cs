@@ -45,6 +45,7 @@ namespace VideoMenuDAL.Repositories
         public Video Delete(int idToRemove)
         {
             var videoToDelete = _context.Videos.FirstOrDefault(v => v.Id == idToRemove);
+            if (videoToDelete == null) return null;
             _context.Videos.Remove(videoToDelete);
             return videoToDelete;
         }
