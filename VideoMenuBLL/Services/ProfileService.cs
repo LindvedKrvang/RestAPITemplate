@@ -57,7 +57,8 @@ namespace VideoMenuBLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                uow.
+                uow.ProfileRepository.ClearAll();
+                uow.Complete();
             }
         }
     }
