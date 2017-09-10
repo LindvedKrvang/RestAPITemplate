@@ -55,7 +55,10 @@ namespace VideoMenuBLL.Services
 
         public void ClearAll()
         {
-            throw new NotImplementedException();
+            using (var uow = _facade.UnitOfWork)
+            {
+                uow.
+            }
         }
     }
 }
