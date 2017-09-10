@@ -71,18 +71,18 @@ namespace VideoMenuBLLTest
         [Fact]
         private void ProfileService_Search_Equal()
         {
-            _service.Create(TestProfile);
-            var searchOne = _service.Search(TestProfile.Id + "");
-            var searchTwo = _service.Search(TestProfile.FirstName);
-            var searchThree = _service.Search(TestProfile.LastName);
-            var searchFour = _service.Search(TestProfile.FullName);
-            var searchFive = _service.Search(TestProfile.Address);
+            var profileCreated = _service.Create(TestProfile);
+            var searchOne = _service.Search(profileCreated.Id + "");
+            var searchTwo = _service.Search(profileCreated.FirstName);
+            var searchThree = _service.Search(profileCreated.LastName);
+            var searchFour = _service.Search(profileCreated.FullName);
+            var searchFive = _service.Search(profileCreated.Address);
 
-            Assert.Equal(TestProfile, searchOne[0]);
-            Assert.Equal(TestProfile, searchTwo[0]);
-            Assert.Equal(TestProfile, searchThree[0]);
-            Assert.Equal(TestProfile, searchFour[0]);
-            Assert.Equal(TestProfile, searchFive[0]);
+            Assert.Equal(profileCreated, searchOne[0]);
+            Assert.Equal(profileCreated, searchTwo[0]);
+            Assert.Equal(profileCreated, searchThree[0]);
+            Assert.Equal(profileCreated, searchFour[0]);
+            Assert.Equal(profileCreated, searchFive[0]);
         }
 
         [Fact]

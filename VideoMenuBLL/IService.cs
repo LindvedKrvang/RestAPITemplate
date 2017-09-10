@@ -15,10 +15,10 @@ namespace VideoMenuBLL
         List<TEntity> Search(string searchQuery);
 
         //U
-        void Update(TEntity video);
+        void Update(TEntity entity);
 
         //D
-        TEntity Delete(int idOfVideo);
+        TEntity Delete(int idOfEntity);
 
         void ClearAll();
     }
