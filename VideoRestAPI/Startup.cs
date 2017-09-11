@@ -37,6 +37,14 @@ namespace VideoRestAPI
                 var facade = new BllFacade();
                 facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Id = 1, Genre = EGenreBO.Comedy});
                 facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Id = 2, Genre = EGenreBO.Action});
+
+                facade.ProfileService.Create(new ProfileBO
+                {
+                    FirstName = "Test",
+                    LastName = "Person",
+                    Address = "TestDrive"
+                });
+            
             }
 
             app.UseMvc();
