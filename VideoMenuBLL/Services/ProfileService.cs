@@ -95,7 +95,7 @@ namespace VideoMenuBLL.Services
         /// Updates the parsed profile in the database.
         /// </summary>
         /// <param name="entity"></param>
-        public void Update(ProfileBO entity)
+        public ProfileBO Update(ProfileBO entity)
         {
             using (var uow = _facade.UnitOfWork)
             {
@@ -104,6 +104,7 @@ namespace VideoMenuBLL.Services
                 profileToBeUpdated.LastName = entity.LastName;
                 profileToBeUpdated.Address = entity.Address;
                 uow.Complete();
+                return _converter.Convert(profileToBeUpdated);
             }
         }
 

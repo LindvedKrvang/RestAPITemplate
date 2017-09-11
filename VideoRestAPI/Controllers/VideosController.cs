@@ -18,37 +18,62 @@ namespace VideoRestAPI.Controllers
 
         // GET: api/Videos
         [HttpGet]
-        public IEnumerable<VideoBO> Get()
+        public IActionResult Get()
         {
-            return _facade.VideoService.GetAll();
+            return Ok(_facade.VideoService.GetAll());
         }
 
         // GET: api/Videos/5
         [HttpGet("{id}", Name = "GetVideos")]
-        public VideoBO Get(int id)
+        public IActionResult Get(int id)
         {
-            return _facade.VideoService.GetOne(id);
+            try
+            {
+                return Ok(_facade.VideoService.GetOne(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't delete the video with the Id: {id}!");
+            }
         }
         
         // POST: api/Videos
         [HttpPost]
-        public void Post([FromBody]VideoBO video)
+        public IActionResult Post([FromBody]VideoBO video)
         {
-            _facade.VideoService.Create(video);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            return Ok(_facade.VideoService.Create(video));
         }
         
         // PUT: api/Videos/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]VideoBO video)
+        public IActionResult Put(int id, [FromBody]VideoBO video)
         {
-            _facade.VideoService.Update(video);
+            if (id != video.Id) return StatusCode(404, "Id does not match video Id!");
+
+            try
+            {
+                return Ok(_facade.VideoService.Update(video));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't update the video!");
+            }
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _facade.VideoService.Delete(id);
+            try
+            {
+                return Ok(_facade.VideoService.Delete(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't delete the video with the Id: {id}!");
+            }
         }
     }
 }

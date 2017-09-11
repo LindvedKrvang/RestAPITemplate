@@ -18,37 +18,67 @@ namespace VideoRestAPI.Controllers
 
         // GET: api/Profiles
         [HttpGet]
-        public IEnumerable<ProfileBO> Get()
+        public IActionResult Get()
         {
-            return _facade.ProfileService.GetAll();
+            try
+            {
+                return Ok(_facade.ProfileService.GetAll());
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't get all profiles!");
+            }
         }
 
         // GET: api/Profiles/5
         [HttpGet("{id}", Name = "GetProfiles")]
-        public ProfileBO Get(int id)
+        public IActionResult Get(int id)
         {
-            return _facade.ProfileService.GetOne(id);
+            try
+            {
+                return Ok(_facade.ProfileService.GetOne(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't get the profile with the Id: {id}!");
+            }
         }
         
         // POST: api/Profiles
         [HttpPost]
-        public void Post([FromBody]ProfileBO profile)
+        public IActionResult Post([FromBody]ProfileBO profile)
         {
-            _facade.ProfileService.Create(profile);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            return Ok(_facade.ProfileService.Create(profile));
         }
         
         // PUT: api/Profiles/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]ProfileBO profile)
+        public IActionResult Put(int id, [FromBody]ProfileBO profile)
         {
-            _facade.ProfileService.Update(profile);
+            if (id != profile.Id) return StatusCode(404, "Id does not match profile Id!");
+            try
+            {
+                return Ok(_facade.ProfileService.Update(profile));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't update the profile!");
+            }
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _facade.ProfileService.Delete(id);
+            try
+            {
+                return Ok(_facade.ProfileService.Delete(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest($"Couldn't delete the profile with the Id: {id}!");
+            }
         }
     }
 }

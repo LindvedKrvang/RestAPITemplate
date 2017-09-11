@@ -105,13 +105,14 @@ namespace VideoMenuBLL.Services
         /// Finds the video witch mathces with the id of the parsed video. Then updates the video.
         /// </summary>
         /// <param name="video"></param>
-        public void Update(VideoBO video)
+        public VideoBO Update(VideoBO video)
         {
             using (var uow = _facade.UnitOfWork)
             {
                 var videoToEdit = uow.VideoRepository.Get(video.Id);
                 videoToEdit.Name = video.Name;
                 uow.Complete();
+                return _converter.Convert(videoToEdit);
             }
         }
 
