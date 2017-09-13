@@ -44,7 +44,9 @@ namespace VideoRestAPI
                     LastName = "Person",
                     Address = "TestDrive"
                 });
-            
+
+                facade.UserService.Create(new UserBO {Id = 1, Username = "admin", Password = "admin"});
+                facade.UserService.Create(new UserBO {Id = 2, Username = "user", Password = "user"});
             }
 
             app.UseMvc();
