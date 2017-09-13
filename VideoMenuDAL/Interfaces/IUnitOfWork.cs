@@ -9,6 +9,7 @@ namespace VideoMenuDAL
     {
         IRepository<Video> VideoRepository { get; }
         IRepository<Profile> ProfileRepository { get; }
+        IRepository<User> UserRepository { get; }
 
         int Complete();
     }

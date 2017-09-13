@@ -11,6 +11,7 @@ namespace VideoMenuDAL.UnitOfWork
     {
         public IRepository<Video> VideoRepository { get; internal set; }
         public IRepository<Profile> ProfileRepository { get; internal set; }
+        public IRepository<User> UserRepository { get; internal set; }
 
         private readonly InMemoryContext _context;
 
@@ -19,6 +20,7 @@ namespace VideoMenuDAL.UnitOfWork
             _context = context;
             VideoRepository = new VideoRepositoryInMemory(_context);
             ProfileRepository = new ProfileRepositoryInMemory(_context);
+            UserRepository = new UserRepositoryInMemory(_context);
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.VideoService.GetOne(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't delete the video with the Id: {id}!");
             }
@@ -56,7 +56,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.VideoService.Update(video));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't update the video!");
             }
@@ -70,7 +70,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.VideoService.Delete(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't delete the video with the Id: {id}!");
             }
