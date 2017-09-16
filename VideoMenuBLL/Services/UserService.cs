@@ -24,6 +24,7 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var userToCreate = uow.UserRepository.Create(_converter.Convert(entity));
+                //var profiel = uow.ProfileRepository.Create()
                 uow.Complete();
                 return _converter.Convert(userToCreate);
             }
