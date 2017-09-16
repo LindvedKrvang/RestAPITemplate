@@ -48,8 +48,9 @@ namespace VideoRestAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]ProfileBO profile)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            return Ok(_facade.ProfileService.Create(profile));
+            return StatusCode(403, "Can't create a profile without a user. Create a new user to create a new profile.");
+            //if (!ModelState.IsValid) return BadRequest(ModelState);
+            //return Ok(_facade.ProfileService.Create(profile));
         }
         
         // PUT: api/Profiles/5

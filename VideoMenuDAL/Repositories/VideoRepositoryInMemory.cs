@@ -11,7 +11,6 @@ namespace VideoMenuDAL.Repositories
     {
         private readonly InMemoryContext _context;
 
-        private static int _id = 1;
 
         public VideoRepositoryInMemory(InMemoryContext context)
         {
@@ -70,7 +69,6 @@ namespace VideoMenuDAL.Repositories
         {
             var videoCreated = new Video()
             {
-                Id = _id++,
                 Name = video.Name,
                 Genre = EGenre.Undefined
             };

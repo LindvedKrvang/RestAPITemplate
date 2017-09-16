@@ -35,8 +35,8 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BllFacade();
-                facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Id = 1, Genre = EGenreBO.Comedy});
-                facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Id = 2, Genre = EGenreBO.Action});
+                facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Genre = EGenreBO.Comedy});
+                facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Genre = EGenreBO.Action});
 
                 facade.ProfileService.Create(new ProfileBO
                 {
@@ -45,8 +45,8 @@ namespace VideoRestAPI
                     Address = "TestDrive"
                 });
 
-                facade.UserService.Create(new UserBO {Id = 1, Username = "admin", Password = "admin"});
-                facade.UserService.Create(new UserBO {Id = 2, Username = "user", Password = "user"});
+                facade.UserService.Create(new UserBO {Username = "admin", Password = "admin"});
+                facade.UserService.Create(new UserBO {Username = "user", Password = "user"});
             }
 
             app.UseMvc();

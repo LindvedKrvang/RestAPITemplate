@@ -11,7 +11,6 @@ namespace VideoMenuDAL.Repositories
     {
         private readonly InMemoryContext _context;
 
-        private static int _id = 1;
 
         public ProfileRepositoryInMemory(InMemoryContext context)
         {
@@ -27,7 +26,6 @@ namespace VideoMenuDAL.Repositories
         {
             var newProfile = new Profile()
             {
-                Id = _id++,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
                 Address = profile.Address
