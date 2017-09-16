@@ -6,21 +6,25 @@ using VideoMenuDAL.Entities;
 
 namespace VideoMenuBLL.Converters
 {
-    class ProfileConverter
+    internal class ProfileConverter
     {
         internal ProfileBO Convert(Profile profile)
         {
+            if (profile == null) return null;
+
             return new ProfileBO()
             {
                 Id = profile.Id,
                 FirstName = profile.FirstName,
                 LastName = profile.LastName,
-                Address = profile.Address,
+                Address = profile.Address
             };
         }
 
         internal Profile Convert(ProfileBO profile)
         {
+            if (profile == null) return null;
+
             return new Profile()
             {
                 Id = profile.Id,

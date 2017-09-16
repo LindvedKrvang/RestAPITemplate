@@ -24,7 +24,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.ProfileService.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't get all profiles!");
             }
@@ -38,7 +38,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.ProfileService.GetOne(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't get the profile with the Id: {id}!");
             }
@@ -62,7 +62,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.ProfileService.Update(profile));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't update the profile!");
             }
@@ -76,7 +76,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.ProfileService.Delete(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't delete the profile with the Id: {id}!");
             }

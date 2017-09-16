@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using VideoMenuDAL.Context;
 using VideoMenuDAL.Entities;
 
@@ -24,14 +25,15 @@ namespace VideoMenuDAL.Repositories
         /// <returns></returns>
         public Profile Create(Profile profile)
         {
-            var newProfile = new Profile()
-            {
-                FirstName = profile.FirstName,
-                LastName = profile.LastName,
-                Address = profile.Address
-            };
-            _context.Profiles.Add(newProfile);
-            return newProfile;
+            //var newProfile = new Profile()
+            //{
+            //    FirstName = profile.FirstName,
+            //    LastName = profile.LastName,
+            //    Address = profile.Address,
+            //    UserId = profile.UserId
+            //};
+            _context.Profiles.Add(profile);
+            return profile;
         }
 
         /// <summary>
@@ -60,7 +62,7 @@ namespace VideoMenuDAL.Repositories
         /// <returns></returns>
         public List<Profile> Search(string searchQuery)
         {
-            int.TryParse(searchQuery, out int id);
+            int.TryParse(searchQuery, out var id);
             return _context.Profiles.Where(p => p.Id == id
                     || searchQuery.ToLower().Contains(p.FirstName.ToLower())
                     || searchQuery.ToLower().Contains(p.LastName.ToLower())

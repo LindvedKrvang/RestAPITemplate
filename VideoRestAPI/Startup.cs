@@ -38,15 +38,24 @@ namespace VideoRestAPI
                 facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Genre = EGenreBO.Comedy});
                 facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Genre = EGenreBO.Action});
 
-                facade.ProfileService.Create(new ProfileBO
+                var user1 = facade.UserService.Create(new UserBO {Username = "user", Password = "user"});
+                var user2 = facade.UserService.Create(new UserBO {Username = "admin", Password = "admin"});
+
+                facade.ProfileService.Update(new ProfileBO
                 {
-                    FirstName = "Test",
-                    LastName = "Person",
-                    Address = "TestDrive"
+                    Id = user1.Id,
+                    FirstName = "User",
+                    LastName = "Profile",
+                    Address = "UserDrive"
                 });
 
-                facade.UserService.Create(new UserBO {Username = "admin", Password = "admin"});
-                facade.UserService.Create(new UserBO {Username = "user", Password = "user"});
+                facade.ProfileService.Update(new ProfileBO()
+                {
+                    Id = user2.Id,
+                    FirstName = "Admin",
+                    LastName = "Profile",
+                    Address = "AdminDrive"
+                });
             }
 
             app.UseMvc();

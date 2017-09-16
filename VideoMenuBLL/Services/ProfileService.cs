@@ -26,6 +26,8 @@ namespace VideoMenuBLL.Services
         /// <returns></returns>
         public ProfileBO Create(ProfileBO entity)
         {
+            throw new InvalidOperationException();
+
             using (var uow = _facade.UnitOfWork)
             {
                 var proflieCreated = uow.ProfileRepository.Create(_converter.Convert(entity));

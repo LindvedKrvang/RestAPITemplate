@@ -6,15 +6,18 @@ using VideoMenuDAL.Entities;
 
 namespace VideoMenuBLL.Converters
 {
-    public class UserConverter
+    internal class UserConverter
     {
+        private readonly ProfileConverter _profileConverter = new ProfileConverter();
+
         public UserBO Convert(User user)
         {
             return new UserBO
             {
                 Id = user.Id,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                Profile = _profileConverter.Convert(user.Profile)
             };
         }
 
@@ -24,7 +27,8 @@ namespace VideoMenuBLL.Converters
             {
                 Id = user.Id,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                Profile = _profileConverter.Convert(user.Profile)
             };
         }
     }

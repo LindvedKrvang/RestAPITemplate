@@ -6,7 +6,7 @@ using VideoMenuDAL.Entities;
 
 namespace VideoMenuBLL.Converters
 {
-    class VideoConverter
+    internal class VideoConverter
     {
         internal VideoBO Convert(Video video) {
             return new VideoBO() {
