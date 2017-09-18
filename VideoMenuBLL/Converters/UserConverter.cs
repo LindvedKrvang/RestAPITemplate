@@ -12,6 +12,7 @@ namespace VideoMenuBLL.Converters
 
         public UserBO Convert(User user)
         {
+            if (user == null) return null;
             return new UserBO
             {
                 Id = user.Id,
@@ -23,6 +24,7 @@ namespace VideoMenuBLL.Converters
 
         public User Convert(UserBO user)
         {
+            if (user == null) return null;
             return new User
             {
                 Id = user.Id,

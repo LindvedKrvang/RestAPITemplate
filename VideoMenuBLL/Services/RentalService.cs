@@ -12,6 +12,8 @@ namespace VideoMenuBLL.Services
     {
         private readonly DalFacade _facade;
         private readonly RentalConverter _rentalConverter = new RentalConverter();
+        private readonly VideoConverter _videoConverter = new VideoConverter();
+        private readonly UserConverter _userConverter = new UserConverter();
 
         public RentalService(DalFacade facade)
         {
@@ -50,7 +52,10 @@ namespace VideoMenuBLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                return _rentalConverter.Convert(uow.RentalRepository.Get(id));
+                var rental = _rentalConverter.Convert(uow.RentalRepository.Get(id));
+                rental.Video = _videoConverter.Convert(uow.VideoRepository.Get(rental.VideoId));
+                rental.User = _userConverter.Convert(uow.UserRepository.Get(rental.UserId));
+                return rental;
             }
         }
 
@@ -69,6 +74,8 @@ namespace VideoMenuBLL.Services
                 var rental = uow.RentalRepository.Get(entity.Id);
                 rental.From = entity.From;
                 rental.To = entity.To;
+                rental.UserId = entity.UserId;
+                rental.VideoId = entity.VideoId;
 
                 uow.Complete();
                 return _rentalConverter.Convert(rental);

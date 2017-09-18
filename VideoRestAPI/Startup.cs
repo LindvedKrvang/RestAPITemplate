@@ -35,8 +35,8 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BllFacade();
-                facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Genre = EGenreBO.Comedy});
-                facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Genre = EGenreBO.Action});
+                var video1 = facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Genre = EGenreBO.Comedy});
+                var video2 = facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Genre = EGenreBO.Action});
 
                 var user1 = facade.UserService.Create(new UserBO {Username = "user", Password = "user"});
                 var user2 = facade.UserService.Create(new UserBO {Username = "admin", Password = "admin"});
@@ -57,9 +57,25 @@ namespace VideoRestAPI
                     Address = "AdminDrive"
                 });
 
-                facade.RentalService.Create(new RentalBO {From = DateTime.Today.AddDays(-2.0), To = DateTime.Now.AddDays(3.0)});
-                facade.RentalService.Create(new RentalBO {From = DateTime.Today.AddDays(-1.0), To = DateTime.Now.AddDays(2.0)});
-                facade.RentalService.Create(new RentalBO {From = DateTime.Today, To = DateTime.Now.AddDays(5.0)});
+                var rental1 = facade.RentalService.Create(new RentalBO
+                {
+                    From = DateTime.Today.AddDays(-2.0), To = DateTime.Now.AddDays(3.0),
+                    UserId = user1.Id,
+                    VideoId = video1.Id
+
+                });
+                var rental2 = facade.RentalService.Create(new RentalBO
+                {
+                    From = DateTime.Today.AddDays(-1.0), To = DateTime.Now.AddDays(2.0),
+                    UserId = user1.Id,
+                    VideoId = video2.Id
+                });
+                var rental3 = facade.RentalService.Create(new RentalBO
+                {
+                    From = DateTime.Today, To = DateTime.Now.AddDays(5.0),
+                    UserId = user2.Id,
+                    VideoId = video2.Id
+                });
                 
             }
 

@@ -22,7 +22,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.RentalService.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest("Couldn't get all rentals...");
             }
@@ -36,7 +36,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.RentalService.GetOne(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't get the rental with the id {id}.");
             }
@@ -50,7 +50,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.RentalService.Create(rental));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't create the rental with the id {rental.Id}.");
             }
@@ -64,7 +64,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.RentalService.Update(rental));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't update the rental with the id {rental.Id}.");
             }
@@ -78,7 +78,7 @@ namespace VideoRestAPI.Controllers
             {
                 return Ok(_facade.RentalService.Delete(id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest($"Couldn't delete the rental with the id {id}.");
             }
