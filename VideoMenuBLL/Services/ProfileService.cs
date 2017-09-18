@@ -28,12 +28,12 @@ namespace VideoMenuBLL.Services
         {
             throw new InvalidOperationException();
 
-            using (var uow = _facade.UnitOfWork)
-            {
-                var proflieCreated = uow.ProfileRepository.Create(_converter.Convert(entity));
-                uow.Complete();
-                return _converter.Convert(proflieCreated);
-            }
+            //using (var uow = _facade.UnitOfWork)
+            //{
+            //    var proflieCreated = uow.ProfileRepository.Create(_converter.Convert(entity));
+            //    uow.Complete();
+            //    return _converter.Convert(proflieCreated);
+            //}
         }
 
         /// <summary>

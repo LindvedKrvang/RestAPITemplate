@@ -22,7 +22,7 @@ namespace VideoRestAPI.Controllers
         }
 
         // GET: api/User/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetUsers")]
         public UserBO Get(int id) {
             return _facade.UserService.GetOne(id);
         }

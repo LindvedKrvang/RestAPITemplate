@@ -56,6 +56,11 @@ namespace VideoRestAPI
                     LastName = "Profile",
                     Address = "AdminDrive"
                 });
+
+                facade.RentalService.Create(new RentalBO {From = DateTime.Today.AddDays(-2.0), To = DateTime.Now.AddDays(3.0)});
+                facade.RentalService.Create(new RentalBO {From = DateTime.Today.AddDays(-1.0), To = DateTime.Now.AddDays(2.0)});
+                facade.RentalService.Create(new RentalBO {From = DateTime.Today, To = DateTime.Now.AddDays(5.0)});
+                
             }
 
             app.UseMvc();
