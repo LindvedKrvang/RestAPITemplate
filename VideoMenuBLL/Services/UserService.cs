@@ -99,6 +99,8 @@ namespace VideoMenuBLL.Services
             {
                 var userToDelete = uow.UserRepository.Delete(idOfEntity);
                 uow.ProfileRepository.Delete(userToDelete.Id);
+                var rentalsToDelete = uow.RentalRepository.SearchByUserId(userToDelete.Id);
+                rentalsToDelete.ForEach(r => uow.RentalRepository.Delete(r.Id));
                 uow.Complete();
                 return _userConverter.Convert(userToDelete);
             }
