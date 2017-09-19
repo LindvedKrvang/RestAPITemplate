@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VideoMenuDAL.Context;
 using VideoMenuDAL.Entities;
+using VideoMenuDAL.Interfaces;
 
 namespace VideoMenuDAL.Repositories
 {
-    internal class RentalRepository : IRepository<Rental>
+    internal class RentalRepository : IRentalRepository
     {
         private readonly InMemoryContext _context;
 
@@ -51,6 +52,16 @@ namespace VideoMenuDAL.Repositories
             {
                 _context.Rentals.Remove(rental);
             }
+        }
+
+        public List<Rental> SearchByVideoId(int videoId)
+        {
+            return _context.Rentals.Where(r => r.VideoId == videoId).ToList();
+        }
+
+        public List<Rental> SearchByUserId(int userId)
+        {
+            return _context.Rentals.Where(r => r.UserId == userId).ToList();
         }
     }
 }

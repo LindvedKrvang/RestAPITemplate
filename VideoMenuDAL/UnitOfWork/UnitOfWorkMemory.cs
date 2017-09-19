@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using VideoMenuDAL.Context;
 using VideoMenuDAL.Entities;
+using VideoMenuDAL.Interfaces;
 using VideoMenuDAL.Repositories;
 
 namespace VideoMenuDAL.UnitOfWork
@@ -12,7 +13,7 @@ namespace VideoMenuDAL.UnitOfWork
         public IRepository<Video> VideoRepository { get; internal set; }
         public IRepository<Profile> ProfileRepository { get; internal set; }
         public IRepository<User> UserRepository { get; internal set; }
-        public IRepository<Rental> RentalRepository { get; internal set; }
+        public IRentalRepository RentalRepository { get; internal set; }
 
         private readonly InMemoryContext _context;
 

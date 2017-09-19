@@ -13,6 +13,8 @@ namespace VideoMenuBLL.Services
     {
         private readonly UserConverter _userConverter = new UserConverter();
         private readonly ProfileConverter _profileConverter = new ProfileConverter();
+        private readonly RentalConverter _rentalConverter = new RentalConverter();
+        private readonly VideoConverter _videoConverter = new VideoConverter();
         private readonly IDalFacade _facade;
 
         public UserService(IDalFacade facade)
@@ -26,7 +28,6 @@ namespace VideoMenuBLL.Services
             {
                 var userToCreate = uow.UserRepository.Create(_userConverter.Convert(entity));
                 uow.ProfileRepository.Create(new Profile() {FirstName = entity.Username});
-                //var profiel = uow.ProfileRepository.Create()
                 uow.Complete();
                 return _userConverter.Convert(userToCreate);
             }
@@ -64,6 +65,8 @@ namespace VideoMenuBLL.Services
             {
                 var user = _userConverter.Convert(uow.UserRepository.Get(id));
                 user.Profile = _profileConverter.Convert(uow.ProfileRepository.Get(user.Id));
+                user.Rentals = uow.RentalRepository.SearchByUserId(user.Id).Select(_rentalConverter.Convert).ToList();
+                user.Rentals.ForEach(r => r.Video = _videoConverter.Convert(uow.VideoRepository.Get(r.VideoId)));
                 return user;
             }
         }

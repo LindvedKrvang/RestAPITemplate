@@ -8,9 +8,6 @@ namespace VideoMenuBLL.Converters
 {
     internal class RentalConverter
     {
-        private readonly UserConverter _userConverter = new UserConverter();
-        private readonly VideoConverter _videoConverter = new VideoConverter();
-
         public Rental Convert(RentalBO rental)
         {
             if (rental == null) return null;
@@ -21,9 +18,7 @@ namespace VideoMenuBLL.Converters
                 From = rental.From,
                 To = rental.To,
                 UserId = rental.UserId,
-                VideoId = rental.VideoId,
-                User = _userConverter.Convert(rental.User),
-                Video = _videoConverter.Convert(rental.Video)
+                VideoId = rental.VideoId
             };
         }
 
@@ -37,9 +32,7 @@ namespace VideoMenuBLL.Converters
                 From = rental.From,
                 To = rental.To,
                 UserId = rental.UserId,
-                VideoId = rental.VideoId,
-                User = _userConverter.Convert(rental.User),
-                Video = _videoConverter.Convert(rental.Video)
+                VideoId = rental.VideoId
             };
         }
     }

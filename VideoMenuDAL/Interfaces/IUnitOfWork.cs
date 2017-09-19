@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using VideoMenuDAL.Entities;
+using VideoMenuDAL.Interfaces;
 
 namespace VideoMenuDAL
 {
@@ -10,7 +11,7 @@ namespace VideoMenuDAL
         IRepository<Video> VideoRepository { get; }
         IRepository<Profile> ProfileRepository { get; }
         IRepository<User> UserRepository { get; }
-        IRepository<Rental> RentalRepository { get; }
+        IRentalRepository RentalRepository { get; }
 
         int Complete();
     }
