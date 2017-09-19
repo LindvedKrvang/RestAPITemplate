@@ -39,6 +39,7 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 users.AddRange(entities.Select(u => uow.UserRepository.Create(_userConverter.Convert(u))));
+                //TODO RKL: Also create profiles here.
                 uow.Complete();
             }
             return users.Select(_userConverter.Convert).ToList();
@@ -64,6 +65,7 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var user = _userConverter.Convert(uow.UserRepository.Get(id));
+                if (user == null) return null;
                 user.Profile = _profileConverter.Convert(uow.ProfileRepository.Get(user.Id));
                 user.Rentals = uow.RentalRepository.SearchByUserId(user.Id).Select(_rentalConverter.Convert).ToList();
                 user.Rentals.ForEach(r => r.Video = _videoConverter.Convert(uow.VideoRepository.Get(r.VideoId)));
@@ -96,6 +98,7 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var userToDelete = uow.UserRepository.Delete(idOfEntity);
+                uow.ProfileRepository.Delete(userToDelete.Id);
                 uow.Complete();
                 return _userConverter.Convert(userToDelete);
             }

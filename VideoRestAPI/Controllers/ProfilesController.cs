@@ -49,8 +49,6 @@ namespace VideoRestAPI.Controllers
         public IActionResult Post([FromBody]ProfileBO profile)
         {
             return StatusCode(403, "Can't create a profile without a user. Create a new user to create a new profile.");
-            //if (!ModelState.IsValid) return BadRequest(ModelState);
-            //return Ok(_facade.ProfileService.Create(profile));
         }
         
         // PUT: api/Profiles/5
@@ -72,14 +70,8 @@ namespace VideoRestAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            try
-            {
-                return Ok(_facade.ProfileService.Delete(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest($"Couldn't delete the profile with the Id: {id}!");
-            }
+            return StatusCode(403,
+                "Can't directly delete a profile. Delete the User accossiated with the profile to delete the profile.");
         }
     }
 }
