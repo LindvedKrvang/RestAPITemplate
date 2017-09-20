@@ -89,6 +89,8 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var deletedVideo = uow.VideoRepository.Delete(idOfVideo);
+                var rentalsToDelete = uow.RentalRepository.SearchByVideoId(deletedVideo.Id);
+                rentalsToDelete.ForEach(r => uow.RentalRepository.Delete(r.Id));
                 uow.Complete();
                 return _converter.Convert(deletedVideo);
             }
