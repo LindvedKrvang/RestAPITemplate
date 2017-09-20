@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace VideoMenuBLL.BusinessObjects
 {
@@ -7,6 +8,7 @@ namespace VideoMenuBLL.BusinessObjects
         public int Id { get; set; }
         public string Name { get; set; }
         public EGenreBO Genre { get; set; }
+        public List<RentalBO> Rentals { get; set; }
 
         public VideoBO()
         {
