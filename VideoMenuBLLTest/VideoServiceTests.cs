@@ -23,7 +23,6 @@ namespace VideoMenuBLLTest
         {
             Id = 5,
             Name = "Test",
-            Genre = EGenreBO.Undefined
         };
 
         [Fact]

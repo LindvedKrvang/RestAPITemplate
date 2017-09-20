@@ -35,8 +35,11 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
                 var facade = new BllFacade();
-                var video1 = facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", Genre = EGenreBO.Comedy});
-                var video2 = facade.VideoService.Create(new VideoBO(){Name = "Skyfall", Genre = EGenreBO.Action});
+                var genreComedy = facade.GenreService.Create(new GenreBO {Name = "Comedy"});
+                var genreAction = facade.GenreService.Create(new GenreBO{Name = "Action"});
+
+                var video1 = facade.VideoService.Create(new VideoBO(){Name = "Bye Bye Birdie", GenreId = genreComedy.Id});
+                var video2 = facade.VideoService.Create(new VideoBO(){Name = "Skyfall", GenreId = genreAction.Id});
 
                 var user1 = facade.UserService.Create(new UserBO {Username = "user", Password = "user"});
                 var user2 = facade.UserService.Create(new UserBO {Username = "admin", Password = "admin"});

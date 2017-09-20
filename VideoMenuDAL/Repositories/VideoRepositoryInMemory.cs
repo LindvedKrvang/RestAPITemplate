@@ -67,13 +67,8 @@ namespace VideoMenuDAL.Repositories
         /// <returns></returns>
         public Video Create(Video video)
         {
-            var videoCreated = new Video()
-            {
-                Name = video.Name,
-                Genre = EGenre.Undefined
-            };
-            _context.Videos.Add(videoCreated);
-            return videoCreated;
+            _context.Videos.Add(video);
+            return video;
         }
 
         /// <summary>
@@ -86,8 +81,7 @@ namespace VideoMenuDAL.Repositories
             int.TryParse(searchQuery, out int id);
             return _context.Videos.Where(v =>
                     v.Name.ToLower().Contains(searchQuery.ToLower())
-                    || v.Id == id
-                    || v.Genre.ToString().ToLower().Contains(searchQuery.ToLower()))
+                    || v.Id == id)
                 .ToList();
         }
     }

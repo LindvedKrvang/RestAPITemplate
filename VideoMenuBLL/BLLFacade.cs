@@ -10,5 +10,6 @@ namespace VideoMenuBLL
         public IService<ProfileBO> ProfileService => new ProfileService(new DalFacade());
         public IService<UserBO> UserService => new UserService(new DalFacade());
         public IService<RentalBO> RentalService => new RentalService(new DalFacade());
+        public IService<GenreBO> GenreService => new GenreService(new DalFacade());
     }
 }

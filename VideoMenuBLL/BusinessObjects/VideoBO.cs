@@ -7,7 +7,8 @@ namespace VideoMenuBLL.BusinessObjects
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public EGenreBO Genre { get; set; }
+        public int GenreId { get; set; }
+        public GenreBO Genre { get; set; }
         public List<RentalBO> Rentals { get; set; }
 
         public VideoBO()
@@ -21,9 +22,7 @@ namespace VideoMenuBLL.BusinessObjects
             if (ReferenceEquals(null, other)) return 1;
             var idComparison = Id.CompareTo(other.Id);
             if (idComparison != 0) return idComparison;
-            var nameComparison = string.Compare(Name, other.Name, StringComparison.Ordinal);
-            if (nameComparison != 0) return nameComparison;
-            return Genre.CompareTo(other.Genre);
+            return string.Compare(Name, other.Name, StringComparison.Ordinal);
         }
     }
 }

@@ -13,6 +13,8 @@ namespace VideoMenuBLL.Services
         private readonly VideoConverter _converter = new VideoConverter();
         private readonly RentalConverter _rentalConverter = new RentalConverter();
         private readonly UserConverter _userConverter = new UserConverter();
+        private readonly GenreConverter _genreConverter = new GenreConverter();
+
         private readonly IDalFacade _facade;
 
         public VideoService(IDalFacade facade)
@@ -59,6 +61,7 @@ namespace VideoMenuBLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var video = _converter.Convert(uow.VideoRepository.Get(id));
+                video.Genre = _genreConverter.Convert(uow.GenreRepository.Get(video.GenreId));
                 video.Rentals = uow.RentalRepository.SearchByVideoId(video.Id).Select(_rentalConverter.Convert).ToList();
                 video.Rentals.ForEach(v => v.User = _userConverter.Convert(uow.UserRepository.Get(v.UserId)));
                 return video;
