@@ -17,6 +17,7 @@ namespace VideoMenuDAL.Context
 
         private static readonly string ConnectionString = File.ReadAllText(DBConnectionPath);
 
+        public VideoAppContext()
         {
             Database.EnsureCreated();
         }
