@@ -10,9 +10,9 @@ namespace VideoMenuDAL.Repositories
 {
     internal class UserRepositoryInMemory : IRepository<User>
     {
-        private readonly InMemoryContext _context;
+        private readonly VideoAppContext _context;
 
-        public UserRepositoryInMemory(InMemoryContext context)
+        public UserRepositoryInMemory(VideoAppContext context)
         {
             _context = context;
         }

@@ -16,9 +16,9 @@ namespace VideoMenuDAL.UnitOfWork
         public IRentalRepository RentalRepository { get; internal set; }
         public IRepository<Genre> GenreRepository { get; internal set; }
 
-        private readonly InMemoryContext _context;
+        private readonly VideoAppContext _context;
 
-        public UnitOfWorkMemory(InMemoryContext context)
+        public UnitOfWorkMemory(VideoAppContext context)
         {
             _context = context;
             VideoRepository = new VideoRepositoryInMemory(_context);

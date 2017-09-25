@@ -9,6 +9,6 @@ namespace VideoMenuDAL
 {
     public class DalFacade : IDalFacade
     {
-        public IUnitOfWork UnitOfWork => new UnitOfWorkMemory(new InMemoryContext());
+        public IUnitOfWork UnitOfWork => new UnitOfWorkMemory(new VideoAppContext());
     }
 }

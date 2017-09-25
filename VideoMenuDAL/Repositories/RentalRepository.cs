@@ -10,9 +10,9 @@ namespace VideoMenuDAL.Repositories
 {
     internal class RentalRepository : IRentalRepository
     {
-        private readonly InMemoryContext _context;
+        private readonly VideoAppContext _context;
 
-        public RentalRepository(InMemoryContext context)
+        public RentalRepository(VideoAppContext context)
         {
             _context = context;
         }

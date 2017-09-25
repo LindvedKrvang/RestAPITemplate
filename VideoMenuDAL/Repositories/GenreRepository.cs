@@ -9,9 +9,9 @@ namespace VideoMenuDAL.Repositories
 {
     internal class GenreRepository : IRepository<Genre>
     {
-        private readonly InMemoryContext _context;
+        private readonly VideoAppContext _context;
 
-        public GenreRepository(InMemoryContext context)
+        public GenreRepository(VideoAppContext context)
         {
             _context = context;
         }
