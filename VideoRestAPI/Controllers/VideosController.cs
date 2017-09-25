@@ -20,7 +20,8 @@ namespace VideoRestAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_facade.VideoService.GetAll());
+            return StatusCode(404, "Testing Continius Delivery");
+            //return Ok(_facade.VideoService.GetAll());
         }
 
         // GET: api/Videos/5
