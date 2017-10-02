@@ -4,12 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VideoMenuBLL;
 using VideoMenuBLL.BusinessObjects;
+using VideoMenuDAL.Context;
 
 namespace VideoRestAPI
 {
@@ -18,6 +22,10 @@ namespace VideoRestAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
+            var builder = new ConfigurationBuilder();
+            builder.AddUserSecrets<Startup>();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -26,11 +34,22 @@ namespace VideoRestAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectString"]));
+            VideoAppContext.ConnectionString = Configuration["secretConnectString"];
+
+            //Enabling CORS.
+            services.AddCors();
+
+            //Making use of https.
+            services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -77,8 +96,15 @@ namespace VideoRestAPI
                 //    UserId = user2.Id,
                 //    VideoId = video2.Id
                 //});
-
             }
+
+
+
+            //Not recommended
+            //app.UseCors(builder => builder.AllowAnyOrigin());
+
+            //Allow PUT and DELETE http methods for the specified website.
+            app.UseCors(builder => builder.WithOrigins("http://www.test-cors.org").AllowAnyMethod());
 
             app.UseMvc();
         }
