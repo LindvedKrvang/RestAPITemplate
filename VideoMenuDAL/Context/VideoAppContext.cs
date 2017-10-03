@@ -7,14 +7,14 @@ using VideoMenuDAL.Entities;
 
 namespace VideoMenuDAL.Context
 {
-    public sealed class VideoAppContext : DbContext
+    internal sealed class VideoAppContext : DbContext
     {
         private static readonly DbContextOptions<VideoAppContext> Options = 
             new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("TheDB").Options;
 
         private static readonly string DBConnectionPath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DBConnection.txt");
-
+        
         private readonly string _connectionString = File.ReadAllText(DBConnectionPath);
 
         public VideoAppContext()

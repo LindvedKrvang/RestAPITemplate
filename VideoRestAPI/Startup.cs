@@ -4,16 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VideoMenuBLL;
 using VideoMenuBLL.BusinessObjects;
-using VideoMenuDAL.Context;
 
 namespace VideoRestAPI
 {
@@ -22,10 +18,6 @@ namespace VideoRestAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            
-            //var builder = new ConfigurationBuilder();
-            //builder.AddUserSecrets<Startup>();
-            //Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -34,16 +26,11 @@ namespace VideoRestAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectString"]));
-            //VideoAppContext.ConnectionString = Configuration["secretConnectString"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -90,8 +77,8 @@ namespace VideoRestAPI
                 //    UserId = user2.Id,
                 //    VideoId = video2.Id
                 //});
-            }
 
+            }
             app.UseMvc();
         }
     }
