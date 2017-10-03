@@ -15,7 +15,7 @@ namespace VideoMenuDAL.Context
         private static readonly string DBConnectionPath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DBConnection.txt");
 
-        public static string ConnectionString = File.ReadAllText(DBConnectionPath);
+        private readonly string _connectionString = File.ReadAllText(DBConnectionPath);
 
         public VideoAppContext()
         {
@@ -26,7 +26,7 @@ namespace VideoMenuDAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConnectionString);
+                optionsBuilder.UseSqlServer(_connectionString);
             }
             base.OnConfiguring(optionsBuilder);
         }

@@ -23,9 +23,9 @@ namespace VideoRestAPI
         {
             Configuration = configuration;
             
-            var builder = new ConfigurationBuilder();
-            builder.AddUserSecrets<Startup>();
-            Configuration = builder.Build();
+            //var builder = new ConfigurationBuilder();
+            //builder.AddUserSecrets<Startup>();
+            //Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -36,7 +36,7 @@ namespace VideoRestAPI
             services.AddMvc();
 
             //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectString"]));
-            VideoAppContext.ConnectionString = Configuration["secretConnectString"];
+            //VideoAppContext.ConnectionString = Configuration["secretConnectString"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
