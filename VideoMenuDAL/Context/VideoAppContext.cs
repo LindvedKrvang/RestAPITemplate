@@ -15,7 +15,7 @@ namespace VideoMenuDAL.Context
         private static readonly string DBConnectionPath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DBConnection.txt");
 
-        public static string ConnectionString;// = File.ReadAllText(DBConnectionPath);
+        public static string ConnectionString = File.ReadAllText(DBConnectionPath);
 
         public VideoAppContext()
         {

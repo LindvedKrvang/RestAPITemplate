@@ -37,12 +37,6 @@ namespace VideoRestAPI
 
             //services.AddDbContext<VideoAppContext>(opt => opt.UseSqlServer(Configuration["secretConnectString"]));
             VideoAppContext.ConnectionString = Configuration["secretConnectString"];
-
-            //Enabling CORS.
-            services.AddCors();
-
-            //Making use of https.
-            //services.Configure<MvcOptions>(options => { options.Filters.Add(new RequireHttpsAttribute()); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,14 +91,6 @@ namespace VideoRestAPI
                 //    VideoId = video2.Id
                 //});
             }
-
-
-
-            //Not recommended
-            //app.UseCors(builder => builder.AllowAnyOrigin());
-
-            //Allow PUT and DELETE http methods for the specified website.
-            app.UseCors(builder => builder.WithOrigins("http://www.test-cors.org").AllowAnyMethod());
 
             app.UseMvc();
         }
