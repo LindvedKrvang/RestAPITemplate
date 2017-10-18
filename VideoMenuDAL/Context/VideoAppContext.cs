@@ -17,12 +17,12 @@ namespace VideoMenuDAL.Context
         
         private readonly string _connectionString = File.ReadAllText(DBConnectionPath);
 
-        //public VideoAppContext() : base(Options)
-        //{
+        //public VideoAppContext() : base(Options) {
 
         //}
 
-        public VideoAppContext() {
+        public VideoAppContext()
+        {
             Database.EnsureCreated();
         }
 
