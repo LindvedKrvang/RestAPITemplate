@@ -17,20 +17,21 @@ namespace VideoMenuDAL.Context
         
         private readonly string _connectionString = File.ReadAllText(DBConnectionPath);
 
-        //public VideoAppContext() : base(Options) {
-
-        //}
-
-        public VideoAppContext()
+        public VideoAppContext() : base(Options)
         {
-            Database.EnsureCreated();
+
         }
+
+        //public VideoAppContext()
+        //{
+        //    Database.EnsureCreated();
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(_connectionString);
+                //optionsBuilder.UseSqlServer(_connectionString);
             }
             base.OnConfiguring(optionsBuilder);
         }

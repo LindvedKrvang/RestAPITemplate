@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VideoMenuBLL;
@@ -9,6 +12,7 @@ using VideoMenuBLL.BusinessObjects;
 
 namespace VideoRestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/Users")]
     public class UsersController : Controller
@@ -16,6 +20,7 @@ namespace VideoRestAPI.Controllers
         private readonly BllFacade _facade = new BllFacade();
 
         // GET: api/User
+        //[Authorize]
         [HttpGet]
         public IEnumerable<UserBO> Get() {
             return _facade.UserService.GetAll();
